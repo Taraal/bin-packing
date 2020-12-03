@@ -18,6 +18,7 @@ Au lancement, choisissez votre mode d'entrée :
 
 
 <br>
+
 ### Pour lancer les tests :
 
 > python3 test.py
