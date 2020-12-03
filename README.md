@@ -6,11 +6,9 @@
 
 Au lancement, choisissez votre mode d'entrée : 
 
-  1. Un fichier dans le dossier courant (les inputX.txt sont là pour ça)
-  
-  2. Une instance entrée au clavier
-  
-  3. Fournir 2 entiers P et N, générant P instances de N éléments
+1. Un fichier dans le dossier courant (les inputX.txt sont là pour ça)
+2. Une instance entrée au clavier  
+3. Fournir 2 entiers P et N, générant P instances de N éléments
   
  Les résultats s'affichent à la fin du programme. 
  
