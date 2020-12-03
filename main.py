@@ -1,8 +1,5 @@
 import random
 
-
-objets = [2, 5, 4, 7, 1, 3, 8]
-
 def firstFit(objets):
 
     sacs = []
@@ -149,7 +146,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-print("FirstFit : ", firstFit(objets))
-print("FirstFit Dec : ", firstFitDecreasing(objets))
-print("NextFit : ", nextFit(objets))

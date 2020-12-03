@@ -1,91 +1,84 @@
 import time
 import random
-from main import nextFit, firstFitDecreasing, randomOrderRandomBin
-
-def getObjets(ligne):
-
-    ligne = ligne.replace(" ", "")
-    arg_list = ligne.split(":")
-    objets = arg_list[:1]
-    return objets
+from main import nextFit, firstFitDecreasing, randomOrderRandomBin, lectureLigne
 
 def lireFichier():
     with open("input.txt") as file:
         ligne = file.readline()
     
-    return getObjets(ligne)
+    return lectureLigne(ligne)
     
 def testFichierNF():
     time_list = []
     for i in range(10):
-        cpt1 = time.perf_counter()
+        start_time = time.time()
         objets = lireFichier()
         nextFit(objets)
-        cpt2 = time.perf_counter()
-        time_list.append(cpt2- cpt1)
-    moyenne = sum(time_list) / len(time_list)
-    print(f"Résultat Fichier + NF : {moyenne:0.4f} secondes")
+        
+        time_list.append(time.time()- start_time)
+    moyenne = round(sum(time_list) / len(time_list), 5) * 1000
+    print(f"Résultat Fichier + NF : {moyenne} millisecondes")
 
 def testFichierFFD():
     time_list = []
     for i in range(10):
-        cpt1 = time.perf_counter()
+        start_time = time.time()
         objets = lireFichier()
         firstFitDecreasing(objets)
-        cpt2 = time.perf_counter()
-        time_list.append(cpt2- cpt1)
-    moyenne = sum(time_list) / len(time_list)
-    print(f"Résultat Fichier + FFD : {moyenne:0.4f} secondes")
+        
+        time_list.append(time.time()- start_time)
+    moyenne = round(sum(time_list) / len(time_list), 5)  * 1000
+    print(f"Résultat Fichier + FFD : {moyenne} millisecondes")
 
 def testFichierRORB():
     time_list = []
     for i in range(10):
-        cpt1 = time.perf_counter()
+        start_time = time.time()
         objets = lireFichier()
         randomOrderRandomBin(objets)
-        cpt2 = time.perf_counter()
-        time_list.append(cpt2- cpt1)
-    moyenne = sum(time_list) / len(time_list)
-    print(f"Résultat Fichier + RORB : {moyenne:0.4f} secondes")
+        
+        time_list.append(time.time()- start_time)
+    moyenne = round(sum(time_list) / len(time_list), 5)  * 1000
+    print(f"Résultat Fichier + RORB : {moyenne} millisecondes")
 
 
 def lireLigne():
     ligne = "10:0.3:0.2:0.5:0.8:0.1:0.4:0.7:0.6:0.2:0.9"
 
-    return getObjets(ligne)
+    return lectureLigne(ligne)
 
 def testClavierNF():
     time_list = []
     for i in range(10):
-        cpt1 = time.perf_counter()
+        start_time = time.time()
         objets = lireLigne()
         nextFit(objets)
-        cpt2 = time.perf_counter()
-        time_list.append(cpt2- cpt1)
-    moyenne = sum(time_list) / len(time_list)
-    print(f"Résultat Clavier + NF : {moyenne:0.4f} secondes")
+        
+        time_list.append(time.time()- start_time)
+    moyenne = round(sum(time_list) / len(time_list), 5) * 1000
+    print(f"Résultat Clavier + NF : {moyenne} millisecondes")
 
 def testClavierFFD():
     time_list = []
     for i in range(10):
-        cpt1 = time.perf_counter()
+        start_time = time.time()
         objets = lireLigne()
         firstFitDecreasing(objets)
-        cpt2 = time.perf_counter()
-        time_list.append(cpt2- cpt1)
-    moyenne = sum(time_list) / len(time_list)
-    print(f"Résultat Clavier + FFD : {moyenne:0.4f} secondes")
+        
+        time_list.append(time.time()- start_time)
+    moyenne = round(sum(time_list) / len(time_list), 5) * 1000
+    print(f"Résultat Clavier + FFD : {moyenne} millisecondes")
 
 def testClavierRORB():
     time_list = []
     for i in range(10):
-        cpt1 = time.perf_counter()
+        start_time = time.time()
         objets = lireLigne()
         randomOrderRandomBin(objets)
-        cpt2 = time.perf_counter()
-        time_list.append(cpt2- cpt1)
-    moyenne = sum(time_list) / len(time_list)
-    print(f"Résultat Clavier + FFD : {moyenne:0.4f} secondes")
+        
+        time_list.append(time.time()- start_time)
+    moyenne = round(sum(time_list) / len(time_list), 5) * 1000
+    print(f"Résultat Clavier + FFD : {moyenne} millisecondes")
 
 
 def genererInstance():
@@ -99,32 +92,49 @@ def genererInstance():
 def testAleatoireNF():
     time_list = []
     for i in range(10):
-        cpt1 = time.perf_counter()
+        start_time = time.time()
         objets = genererInstance()
         nextFit(objets)
-        cpt2 = time.perf_counter()
-        time_list.append(cpt2- cpt1)
-    moyenne = sum(time_list) / len(time_list)
-    print(f"Résultat Aleatoire + NF : {moyenne:0.4f} secondes")
+        
+        time_list.append(time.time()- start_time)
+    moyenne = round(sum(time_list) / len(time_list), 5) * 1000
+    print(f"Résultat Aleatoire + NF : {moyenne} millisecondes")
 
 def testAleatoireFFD():
     time_list = []
     for i in range(10):
-        cpt1 = time.perf_counter()
+        start_time = time.time()
         objets = genererInstance()
         firstFitDecreasing(objets)
-        cpt2 = time.perf_counter()
-        time_list.append(cpt2- cpt1)
-    moyenne = sum(time_list) / len(time_list)
-    print(f"Résultat Aleatoire + NF : {moyenne:0.4f} secondes")
+        
+        time_list.append(time.time()- start_time)
+    moyenne = round(sum(time_list) / len(time_list), 5) * 1000
+    print(f"Résultat Aleatoire + NF : {moyenne} millisecondes")
 
 def testAleatoireRORB():
     time_list = []
     for i in range(10):
-        cpt1 = time.perf_counter()
+        start_time = time.time()
         objets = genererInstance()
         randomOrderRandomBin(objets)
-        cpt2 = time.perf_counter()
-        time_list.append(cpt2- cpt1)
-    moyenne = sum(time_list) / len(time_list)
-    print(f"Résultat Aleatoire + NF : {moyenne:0.4f} secondes")
+        
+        time_list.append(time.time()- start_time)
+    moyenne = round(sum(time_list) / len(time_list), 5) * 1000
+    print(f"Résultat Aleatoire + NF : {moyenne} millisecondes")
+
+def main():
+
+    testFichierNF()
+    testFichierFFD()
+    testFichierRORB()
+    
+    testClavierNF()
+    testClavierFFD()
+    testClavierRORB()
+
+    testAleatoireNF()
+    testAleatoireFFD()
+    testAleatoireRORB()
+
+if __name__ == "__main__":
+    main()
