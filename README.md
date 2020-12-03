@@ -2,8 +2,8 @@
 
 Pour lancer le projet :
 
-> python main.py
+> python3 main.py
 
 Pour lancer les tests :
 
-> python test.py
+> python3 test.py
