@@ -78,7 +78,7 @@ def testClavierRORB():
         
         time_list.append(time.time()- start_time)
     moyenne = round(sum(time_list) / len(time_list), 5) * 1000
-    print(f"Résultat Clavier + FFD : {moyenne} millisecondes")
+    print(f"Résultat Clavier + RORB : {moyenne} millisecondes")
 
 
 def genererInstance():
@@ -109,7 +109,7 @@ def testAleatoireFFD():
         
         time_list.append(time.time()- start_time)
     moyenne = round(sum(time_list) / len(time_list), 5) * 1000
-    print(f"Résultat Aleatoire + NF : {moyenne} millisecondes")
+    print(f"Résultat Aleatoire + FFD : {moyenne} millisecondes")
 
 def testAleatoireRORB():
     time_list = []
@@ -120,18 +120,18 @@ def testAleatoireRORB():
         
         time_list.append(time.time()- start_time)
     moyenne = round(sum(time_list) / len(time_list), 5) * 1000
-    print(f"Résultat Aleatoire + NF : {moyenne} millisecondes")
+    print(f"Résultat Aleatoire + RORB : {moyenne} millisecondes")
 
 def main():
 
     testFichierNF()
     testFichierFFD()
     testFichierRORB()
-    
+    print()
     testClavierNF()
     testClavierFFD()
     testClavierRORB()
-
+    print()
     testAleatoireNF()
     testAleatoireFFD()
     testAleatoireRORB()
