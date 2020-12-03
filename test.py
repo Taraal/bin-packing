@@ -15,8 +15,8 @@ from main import nextFit, firstFitDecreasing, randomOrderRandomBin, lectureLigne
 Pour une instance lue dans un fichier, un fichier de test "input.txt"
 est lu dans le dossier courant
 """
-def lireFichier():
-    with open("input.txt") as file:
+def lireFichier(index):
+    with open(f"input{str(index)}.txt") as file:
         ligne = file.readline()
     
     return lectureLigne(ligne)
@@ -25,7 +25,7 @@ def testFichierNF():
     time_list = []
     for i in range(10):
         start_time = time.time()
-        objets = lireFichier()
+        objets = lireFichier(i)
         nextFit(objets)
         
         time_list.append(time.time()- start_time)
@@ -36,7 +36,7 @@ def testFichierFFD():
     time_list = []
     for i in range(10):
         start_time = time.time()
-        objets = lireFichier()
+        objets = lireFichier(i)
         firstFitDecreasing(objets)
         
         time_list.append(time.time()- start_time)
@@ -47,7 +47,7 @@ def testFichierRORB():
     time_list = []
     for i in range(10):
         start_time = time.time()
-        objets = lireFichier()
+        objets = lireFichier(i)
         randomOrderRandomBin(objets)
         
         time_list.append(time.time()- start_time)
@@ -57,10 +57,23 @@ def testFichierRORB():
 
 ##### CLAVIER ####
 
+lignes = [
+    "10:0.3:0.2:0.5:0.8:0.1:0.4:0.7:0.6:0.2:0.9",
+    "10:0.1:0.8:0.1:0.5:0.2:0.3:0.5:0.7:0.9:0.5",
+    "10:0.8:0.0:0.2:0.6:0.7:0.9:0.6:0.5:1.0:0.7",
+    "10:0.9:0.3:0.1:0.3:0.1:0.4:0.7:0.5:0.8:0.3",
+    "10:0.3:0.9:0.9:0.6:0.6:0.6:0.0:0.8:0.6:0.7",
+    "10:1.0:0.9:0.4:0.8:0.4:0.0:1.0:0.4:0.5:0.0",
+    "10:0.6:0.1:0.9:0.2:0.5:0.0:0.3:0.4:0.8:0.3",
+    "10:0.3:0.9:0.5:0.3:0.4:0.4:0.1:0.5:0.8:0.3",
+    "10:0.8:0.4:0.4:0.3:0.3:0.2:0.4:0.1:0.9:0.5",
+    "10:0.5:0.1:0.3:0.4:0.8:0.9:0.1:0.6:0.1:0.9",
+]
+
 """
 Pour une instance lue au clavier, on stocke l'instance dans un string
 """
-def lireLigne():
+def lireLigne(index):
     ligne = "10:0.3:0.2:0.5:0.8:0.1:0.4:0.7:0.6:0.2:0.9"
 
     return lectureLigne(ligne)
@@ -69,7 +82,7 @@ def testClavierNF():
     time_list = []
     for i in range(10):
         start_time = time.time()
-        objets = lireLigne()
+        objets = lireLigne(i)
         nextFit(objets)
         
         time_list.append(time.time()- start_time)
@@ -80,7 +93,7 @@ def testClavierFFD():
     time_list = []
     for i in range(10):
         start_time = time.time()
-        objets = lireLigne()
+        objets = lireLigne(i)
         firstFitDecreasing(objets)
         
         time_list.append(time.time()- start_time)
@@ -91,7 +104,7 @@ def testClavierRORB():
     time_list = []
     for i in range(10):
         start_time = time.time()
-        objets = lireLigne()
+        objets = lireLigne(i)
         randomOrderRandomBin(objets)
         
         time_list.append(time.time()- start_time)
@@ -110,7 +123,7 @@ def genererInstance():
     nb_elements = 10
     list_objets = []
     for element in range(nb_elements):
-        element = round(random.random(), 2)
+        element = round(random.random(), 1)
         list_objets.append(element)
     return list_objets
 
