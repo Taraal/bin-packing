@@ -2,6 +2,19 @@ import time
 import random
 from main import nextFit, firstFitDecreasing, randomOrderRandomBin, lectureLigne
 
+#### Procédure des tests
+# Comparaison par instance et par algorithme
+# Lancement de 10 instances de chaque type dans chaque algorithme
+# On calcule la moyenne du temps d'exécution des 10 instances
+###
+
+
+#### FICHIER #### 
+
+"""
+Pour une instance lue dans un fichier, un fichier de test "input.txt"
+est lu dans le dossier courant
+"""
 def lireFichier():
     with open("input.txt") as file:
         ligne = file.readline()
@@ -42,6 +55,11 @@ def testFichierRORB():
     print(f"Résultat Fichier + RORB : {moyenne} millisecondes")
 
 
+##### CLAVIER ####
+
+"""
+Pour une instance lue au clavier, on stocke l'instance dans un string
+"""
 def lireLigne():
     ligne = "10:0.3:0.2:0.5:0.8:0.1:0.4:0.7:0.6:0.2:0.9"
 
@@ -81,6 +99,13 @@ def testClavierRORB():
     print(f"Résultat Clavier + RORB : {moyenne} millisecondes")
 
 
+
+##### ALEATOIRE #####
+
+
+"""
+On génère aléatoirement 10 éléments par instance 
+"""
 def genererInstance():
     nb_elements = 10
     list_objets = []

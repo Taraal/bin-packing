@@ -1,5 +1,12 @@
 import random
 
+
+"""
+Dans cet algorithme, pour chaque élément :
+    - on parcourt la liste des sacs non-vides jusqu'à trouver un sac
+        capable de recevoir l'élément
+    - si aucun sac ne convient, on place l'élément dans un nouveau sac vide
+"""
 def firstFit(objets):
 
     sacs = []
@@ -18,7 +25,9 @@ def firstFit(objets):
     
     return len(sacs)
 
-
+"""
+Même chose mais en classant la liste d'éléments par ordre décroissant
+"""
 def firstFitDecreasing(objets):
 
     objets.sort(reverse=True)
@@ -26,6 +35,11 @@ def firstFitDecreasing(objets):
     return firstFit(objets)
 
 
+"""
+Dans cet algorithme, pour chaque élément :
+    - On vérifie si le sac actuel peut contenir l'élément
+    - Sinon, on ajoute l'élément à un nouveau sac
+"""
 def nextFit(objets):
     # Minimum 1 sac
     nb_sacs = 1
@@ -39,14 +53,20 @@ def nextFit(objets):
     
     return nb_sacs
 
+
+"""
+# TODO
+"""
 def randomOrderRandomBin(objets):
     return 0
 
 def lectureLigne(ligne):
+    # On sépare chaque élément par un ":"
     ligne = ligne.replace(" ", "")
     arg_list = ligne.split(":")
     objets = arg_list[1:]
 
+    # Retourne les poids des éléments
     return [float(i) for i in objets]
 
 def lectureFichier():
@@ -75,12 +95,16 @@ def generationInstances():
     except ValueError as e:
         print(e)
         print("Veuillez entrer un chiffre correct")
-        return    
+        return
+
+    # Somme des ratios pour NF, FFD et RORB
     sum_nf = 0
     sum_ffd = 0
     sum_rorb = 0
+
     for instance in range(nb_instances):
         list_objets = []
+        # Création de nb_elements éléments aléatoires dans chaque instance
         for element in range(nb_elements):
             element = round(random.random(), 2)
             list_objets.append(element)
@@ -101,6 +125,7 @@ def generationInstances():
         ratio_rorb = res_rorb / borne_inferieure
         sum_rorb += ratio_rorb
 
+    # Affichage des moyennes par algorithme
     print("Ratio moyen NF : ", sum_nf / nb_instances)
     print("Ratio moyen FFD : ", sum_ffd / nb_instances)
     print("Ratio moyen RORB : ", sum_rorb / nb_instances)
