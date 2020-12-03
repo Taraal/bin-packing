@@ -22,7 +22,7 @@ def firstFit(objets):
 
         if pas_de_place == True:
             sacs.append(round(1 - poids, 1))
-    
+
     return len(sacs)
 
 """
@@ -50,15 +50,48 @@ def nextFit(objets):
         else:
             nb_sacs += 1
             taille_restante = round(1 - poids, 1)
-    
+
     return nb_sacs
 
-
-"""
-# TODO
-"""
 def randomOrderRandomBin(objets):
-    return 0
+
+    #Tri des poids de façon aléatoire
+    random.shuffle(objets)
+
+    #Liste des sacs non vides et capacité max d'un sac
+    sac_non_vides = []
+    sac_capacity = 1
+
+    #On parcourt tous les objets
+    for k in range(0,len(objets)):
+
+        #Si aucun objet n'a encore été attribué
+        if len(sac_non_vides) == 0 :
+            sac_non_vides.append(objets[k])         #Premier sac rempli avec le 1er objet
+
+        else :
+            #Liste des index correspondant aux sacs non vides
+            index = list(range(len(sac_non_vides)))
+
+            #Pour le nombre de sacs non vides actuellement
+            for i in range(len(sac_non_vides)):
+                #Choix aléatoire de l'index d'un sac
+                rd = random.choice(index)
+
+                #Si on peut mettre notre objet dans ce sac
+                if ((sac_non_vides[rd] + objets[k]) <= sac_capacity):
+                    sac_non_vides[rd] = sac_non_vides[rd] + objets[k]
+                    break   #On quitte la boucle, l'objet est attribué
+
+                #Si on ne peut mettre cet objet dans ce sac on enlève ce sac des futurs essais pour cet objet
+                index.remove(rd)
+
+                #Si tous les sacs ont été testés et que l'objet n'est pas attribué, on le met dans un sac vide
+                if(i == (len(sac_non_vides) -1)) :
+                    sac_non_vides.append(objets[k])
+
+    #Retourne le nombre de sacs non vide
+    return len(sac_non_vides)
 
 def lectureLigne(ligne):
     # On sépare chaque élément par un ":"
@@ -74,13 +107,13 @@ def lectureFichier():
     filename = input("Entrez le nom du fichier à lire : ")
     with open(filename) as file:
         ligne = file.readline()
-    
+
     objets = lectureLigne(ligne)
 
     affichageResultat(objets)
 
 def lectureInstance():
-    
+
     ligne = input("Entrez votre instance : ")
     objets = lectureLigne(ligne)
 
@@ -136,8 +169,10 @@ def affichageResultat(objets):
     res_nf = nextFit(objets)
     res_ffd = firstFitDecreasing(objets)
     res_rorb = randomOrderRandomBin(objets)
-    borne_inferieure = sum(objets)
 
+    print(res_rorb)
+
+    borne_inferieure = sum(objets)
 
     print("Borne inférieure : ", borne_inferieure)
     print()
@@ -167,7 +202,8 @@ def main():
         print("3 - Génération aléatoire d'instance(s)")
         choice = input("Votre choix : ")
 
-        options[choice]()    
+        options[choice]()
+
 
 if __name__ == "__main__":
     main()
